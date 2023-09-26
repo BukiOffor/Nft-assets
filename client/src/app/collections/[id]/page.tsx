@@ -1,21 +1,114 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TopNavigation from "@/common/navs/top/TopNavigation";
 import Footer from "@/components/Footer";
 import styles from "@/styles/Home.module.css";
 import { orbitron } from "@/fonts/fonts";
 import { poppins } from "@/fonts/fonts";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+  useAccount,
+} from "wagmi";
+import { SimpleCollectible } from "../../../../constants";
+import { readFactoryContract, readSimpleCollectibleContract } from "@/utils";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { parseEther } from "viem";
 
 const Details = () => {
-  const router = useRouter();
-  const params = useParams();
+  const { address } = useAccount();
+  const pathName = usePathname();
+  // const router = useRouter();
+  const params = parseFloat(pathName.charAt(pathName.length - 1));
+  const [collection, setCollection] = useState({ mintFee: 0 });
+  const [owners, setOwners] = useState<any[]>([]);
+  const [image, setImage] = useState("");
+  const [cAddress, setAddress] = useState<`0x${string}`>(
+    "0x950384443e2455E93010BeeC53Fd24e3aaD04C67"
+  );
+  const [name, setName] = useState("");
+  const [isRedeemed, setIsRedeemed] = useState(false);
+
+  useEffect(() => {
+    console.log("jjj");
+    readFactoryContract("getMarketPlaces").then((res) => {
+      console.log(res);
+      res.forEach((address: any) => {
+        console.log(address);
+        readSimpleCollectibleContract(address, "getData").then(
+          (data: string | any[] | null) => {
+            console.log(data, address);
+            data &&
+              setCollection({
+                mintFee: parseFloat(data[params].mintFee) / 10 ** 18,
+              });
+            readSimpleCollectibleContract(address, "name").then((name) => {
+              console.log(name, data);
+              setAddress(address);
+              name && setName(String(name));
+              data &&
+                axios.get(data[params].uri).then((axiosResponse) => {
+                  console.log(axiosResponse);
+                  setImage(axiosResponse.data.imageUrl);
+                  readSimpleCollectibleContract(address, "getOwners", [
+                    parseFloat(data[params].index),
+                  ]).then((owners) => {
+                    console.log(owners, "fff");
+                    owners && typeof owners !== "string"
+                      ? setOwners(owners)
+                      : setOwners([]);
+                  });
+                });
+            });
+          }
+        );
+      });
+    });
+  }, []);
+
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    address: cAddress,
+    abi: SimpleCollectible.abi,
+    functionName: "createCollectible",
+    args: [address, params],
+    value: parseEther(String(collection.mintFee * 100)),
+  });
+  const { data, error, isError, write } = useContractWrite(config);
+
+  const { isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
+
+  useEffect(() => {
+    console.log(String(collection.mintFee * 100), collection.mintFee);
+    if (isSuccess) {
+      toast.success("Minted Successfully", { theme: "colored" });
+      setIsRedeemed(true);
+    } else if ((isPrepareError || isError) && collection.mintFee) {
+      toast.error(prepareError?.message || error?.message, {
+        theme: "colored",
+      });
+    }
+  }, [isSuccess, isError, isPrepareError]);
 
   const Mint = () => {
-    router.push("/collections/mint");
+    console.log(isRedeemed);
+    !isRedeemed && write?.();
+    // router.push("/collections/mint");
+  };
+
+  const Redeem = () => {
+    // write?.();
+    // router.push("/collections/mint");
   };
 
   return (
@@ -25,7 +118,7 @@ const Details = () => {
         <div className="flex gap-8 gap-y-16 items-end flex-col tablet_l:flex-row mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px]">
           <div className="mr-auto">
             <Image
-              src="/images/nft-2.png"
+              src={image}
               alt=""
               height={800}
               width={808}
@@ -37,7 +130,7 @@ const Details = () => {
               className={`${orbitron.className} flex gap-3 tracking-wide items-center mt-3 `}
               // className=""
             >
-              West craving NFTS
+              {name} NFTS
               <Image
                 src="/images/badge-check.svg"
                 alt=""
@@ -73,16 +166,24 @@ const Details = () => {
             <p className="flex flex-col text-[15px]">
               Unique Owners
               <span className={`${orbitron.className} text-xl`}>
-                120 Owners
+                {owners.length} Owners
               </span>
             </p>
             <div>
               <p className="text-[15px]">Mint price</p>
-              <p className={`${orbitron.className} text-xl`}>0.05 eth</p>
+              <p className={`${orbitron.className} text-xl`}>
+                {collection.mintFee} eth
+              </p>
             </div>
-            <button className={styles.home_btn} onClick={Mint}>
-              Mint
-            </button>
+            {isRedeemed ? (
+              <button className={styles.home_btn} onClick={Redeem}>
+                Redeem
+              </button>
+            ) : (
+              <button className={styles.home_btn} onClick={Mint}>
+                Mint
+              </button>
+            )}
           </div>
         </div>
       </div>

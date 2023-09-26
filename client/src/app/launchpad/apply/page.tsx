@@ -9,7 +9,7 @@
 
 // Import necessary modules and components
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@/common/Button";
 import {
   SectionOneForm,
@@ -18,6 +18,12 @@ import {
 import Onborading from "@/components/Forms/Onborading";
 import GetStarted from "@/components/Forms/GetStarted";
 import TeamInformationForm from "@/components/Forms/TeamInformation";
+import { useDebounce } from "use-debounce";
+import {
+  usePrepareContractWrite,
+  useContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
 import ArtworkDetailsForm from "@/components/Forms/ArtworkDetails";
 import Minting from "@/components/Forms/Minting";
 
@@ -39,6 +45,9 @@ import {
   getSocial,
 } from "@/reducers/userSlice";
 import { useSelector } from "react-redux";
+import { Factory } from "../../../../constants";
+import { parseEther } from "viem";
+
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -50,6 +59,47 @@ const Apply: React.FC = () => {
 
   // State variables
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const debouncedTitle = useDebounce(project?.title, 500);
+  const debouncedPrice = useDebounce(artworks?.price, 500);
+
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    address: Factory.address,
+    abi: Factory.abi,
+    functionName: "deploy",
+    args: [
+      debouncedTitle,
+      debouncedTitle[0] === "string"
+        ? String(debouncedTitle).substring(0, 3).toUpperCase()
+        : null,
+      // This should be the metadata, but since they can't specify details of each NFT, we use existing
+      [
+        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/1.json",
+        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/2.json",
+        "https://bafybeibnsjbky2l2iphqw4rix5frpae3sceexoqmzseb6wt7wj3ntu2k6a.ipfs.dweb.link/3.json",
+      ],
+      // They should be able to set the prices for the various NFTs, but for now, one for all
+      [
+        debouncedPrice[0]
+          ? parseEther(String(parseFloat(debouncedPrice[0]) / 100))
+          : 0,
+        debouncedPrice[0]
+          ? parseEther(String(parseFloat(debouncedPrice[0]) / 100))
+          : 0,
+        debouncedPrice[0]
+          ? parseEther(String(parseFloat(debouncedPrice[0]) / 100))
+          : 0,
+      ],
+    ],
+  });
+  const { data, error, isError, write } = useContractWrite(config);
+
+  const { isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  });
   const [confirm, setConfirm] = useState<boolean>(false);
 
   /**
@@ -61,6 +111,13 @@ const Apply: React.FC = () => {
       setCurrentPage((prevPage) => prevPage + 1);
     }
     if (currentPage >= 7) {
+      setLoading(true);
+      write?.();
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
       const requestBody = {
         ...project,
         ...team,
@@ -68,7 +125,6 @@ const Apply: React.FC = () => {
         ...artworks,
         ...socials,
       };
-      setLoading(true);
       axios
         .post(Endpoints.LAUNCHPAD_CREATE_PACKAGE, requestBody)
         .then((response) => {
@@ -82,8 +138,12 @@ const Apply: React.FC = () => {
           toast.error(message, { theme: "colored" });
           setLoading(false);
         });
+    } else if (isPrepareError || isError) {
+      toast.error(prepareError?.message || error?.message, {
+        theme: "colored",
+      });
     }
-  };
+  }, [isSuccess, isError, isPrepareError]);
 
   /**
    * Function to toggle the confirmation state.
@@ -102,7 +162,6 @@ const Apply: React.FC = () => {
    *
    * @returns {JSX.Element} - The JSX element representing the current page of the form.
    */
-
   const previewCurrentPage = () => {
     switch (currentPage) {
       case 1:

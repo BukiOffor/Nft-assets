@@ -51,6 +51,7 @@ const LaunchPad = () => {
         }
       >
         <NavTools title="Launchpad" isMenu={true} />
+
         <Apply />
       </div>
     </div>

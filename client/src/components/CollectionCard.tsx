@@ -9,6 +9,7 @@ interface CollectionCardProps {
 
 const CollectionCard: React.FC<CollectionCardProps> = (props) => {
   const { title, source, children } = props;
+  console.log(source);
   return (
     <div
       style={{
@@ -28,7 +29,7 @@ const CollectionCard: React.FC<CollectionCardProps> = (props) => {
         />
       </div>
       <div className="flex gap-2 tracking-wide p-3">
-        <h5>{title}</h5>
+        <h5>{title} NFTs</h5>
         <Image
           src="/outline-badge.svg"
           alt="outline-badge"

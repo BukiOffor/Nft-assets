@@ -3,8 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 const initialState: LaunchPadInterface = {
-  project: {},
-  artworks: {},
+  project: {
+    title: null,
+  },
+  artworks: {
+    price: null,
+  },
   team: {},
   sales: {},
   social: {},

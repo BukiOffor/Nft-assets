@@ -185,10 +185,10 @@ $ npx hardhat coverage --network localhost --show-stack-traces
 Tx:
 
 -
-0xaa92f1f2580e1ef9d9c1678f7014f1ff36ac859db278d3de27057be68f5559a9
+0x4f60fbb2a2d0c0162c7357ea0fd67492577168690e170d24aeb1fe60fd3afd0c
 
 
-- 0x1b804915df7d23312735b67895daa26c550fbe63f46f2926ebf38c56bef2fd6f
+- 0x289fe2781066b37e1e211065281f0671dd72e115da9237e7f10b6829b58071d3
 
 the transaction hashes
 
@@ -206,6 +206,9 @@ https://docs.google.com/document/d/1TXCMG2I1hF8gLAJNjz69bioiZXOVwK0crSlhXWqMDvw/
 https://github.com/BukiOffor/Nft-assets/assets/58889001/f8eb776e-df15-4eab-aca5-a535430c4e54
 
 ## Demo Video (Clients POV)
+
+https://github.com/BukiOffor/Nft-assets/assets/58889001/42d9ea71-95ca-4995-be80-9825080295be
+
 
 - [Frontend Deployment](https://nft-assets-c8r6.vercel.app/)
 - [Figma design](https://www.figma.com/proto/dV2FBUaa7BomJu7JCWjL1Z/Webpage-Redesign?page-id=67%3A823&type=design&node-id=348-3699&viewport=7528%2C-2452%2C0.51&t=6PGceqXUTERPd9EJ-1&scaling=scale-down&starting-point-node-id=348%3A3699&mode=design)

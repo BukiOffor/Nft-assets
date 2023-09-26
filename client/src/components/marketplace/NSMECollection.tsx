@@ -4,7 +4,14 @@ import CollectionCard from "../CollectionCard";
 import { nsmeCollection } from "@/data/collection";
 import Link from "next/link";
 
-const NSMECollection: React.FC = () => {
+type Props = {
+  names: string[];
+  images: string[];
+  collections: any[];
+  owners: any[];
+};
+
+const NSMECollection = ({ collections, owners, names, images }: Props) => {
   return (
     <div>
       <div className="text-center mb-8 mt-6">
@@ -21,19 +28,19 @@ const NSMECollection: React.FC = () => {
         <div
           className={`grid grid-cols-1 tablet:grid-cols-2 tablet_l:grid-cols-3 text-white gap-6 ${orbitron.className}`}
         >
-          {nsmeCollection.map(({ id, title, source }) => (
-            <CollectionCard title={title} source={source}>
+          {collections.map(({ mintFee, index }, i) => (
+            <CollectionCard title={names[0]} source={images[0]}>
               <div className="flex justify-between">
-                <div>
+                <div className="text-white">
                   <p>Floor</p>
-                  <p>0.05 ETH</p>
+                  <p>{parseFloat(mintFee) / 10 ** 18} ETH</p>
                 </div>
                 <div>
                   <p>Total Volume</p>
-                  <p>14.1K ETH</p>
+                  <p>{(parseFloat(mintFee) / 10 ** 18) * owners.length} ETH</p>
                 </div>
               </div>
-              <Link href={`/collections/${id}`}>
+              <Link href={`/collections/${parseFloat(index) + 1}`}>
                 <div className="my-6 underline text-center">View Details</div>
               </Link>
             </CollectionCard>
