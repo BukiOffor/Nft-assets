@@ -6,7 +6,7 @@ class AccountRepository extends BaseRepository {
         return super.findByEmail(AccountModel, email);
     }
     static async findById(id) {
-        return super.findByEmail(AccountModel, id);
+        return super.findById(AccountModel, id);
     }
 }
 

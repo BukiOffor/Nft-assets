@@ -1,9 +1,17 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const ContractSchema = new mongoose.Schema({
-    owner_id: String,
-    contract_address: String,
+    id: mongoose.Types.ObjectId,
+    address: {
+        type: String,
+        required: true
+    },
+    token: {
+        type: String,
+        required: true
+    }
 }, { timestamps: true });
 
 const ContractModel = mongoose.model("Contract", ContractSchema);
+
 export default ContractModel;
