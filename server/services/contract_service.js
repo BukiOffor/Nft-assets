@@ -17,6 +17,7 @@ class ContractService {
             return ResponseHandler.sendResponseWithoutData(res, StatusCodes.OK, "Contract stored successfully");
         }
         catch (error) {
+            console.error(error);
             return ResponseHandler.sendErrorResponse(res, StatusCodes.BAD_REQUEST, "Error storing contract");
         }
     }

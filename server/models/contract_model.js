@@ -6,10 +6,7 @@ const ContractSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    token: {
-        type: String,
-        required: true
-    }
+    token: String
 }, { timestamps: true });
 
 const ContractModel = mongoose.model("Contract", ContractSchema);
