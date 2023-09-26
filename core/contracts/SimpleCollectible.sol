@@ -21,6 +21,8 @@ contract SimpleCollectible is ERC721 {
 
     mapping(uint256 => string) tokenURIs;
     mapping(address => uint256) redeemed;
+    //mapping(address user => uint256[] tokensRedeemed) redeemed;
+
     struct Data {
         uint256 index;
         string uri;

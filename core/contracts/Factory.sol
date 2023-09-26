@@ -24,4 +24,8 @@ contract Factory {
         marketplace.push(address(_contract));
         emit Deploy(address(_contract), Name);
     }
+    
+    function getMarketPlace()external view returns(address[] memory _market){
+        _market = marketplace;
+    }
 }
