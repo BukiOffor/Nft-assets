@@ -1,7 +1,3 @@
-import icon from './Icon.svg'
+import icon from "./Icon.svg";
 
-
-
-export {
-    icon,
-}
+export { icon };

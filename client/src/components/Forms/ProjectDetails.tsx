@@ -1,14 +1,13 @@
 "use client";
-import { orbitron } from "@/fonts/fonts";
 import EditableSection from "@/common/EditableSection";
-import { useState } from "react";
+import { orbitron } from "@/fonts/fonts";
+import { setProject, getProject } from "@/reducers/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import TextArea from "@/common/TextArea";
 
 export const SectionOneForm = () => {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [whitePaperText, setWhitePaperText] = useState<string>("");
-  const [goalText, setGoalText] = useState<string>("");
+  const dispatch = useDispatch();
+  const project = useSelector(getProject);
 
   return (
     <div className="my-10">
@@ -19,24 +18,25 @@ export const SectionOneForm = () => {
         title={"Project Title"}
         placeholder={"Title"}
         onChangeHandler={(value: string): void => {
+          console.log(value);
           if (!value) {
             value = " ";
           }
-          setTitle(value);
+          dispatch(setProject({ ...project, title: value }));
         }}
       />
-       <TextArea
+      <TextArea
         title={"Project Description"}
         placeholder={"Description"}
         onChangeHandler={(value: string): void => {
           if (!value) {
             value = " ";
           }
-          setDescription(value);
+          dispatch(setProject({ ...project, description: value }));
         }}
         subTitle="Brief Description of the Product/Service to be Minted as NFT"
       />
-     
+
       <EditableSection
         title={"Product Category"}
         placeholder={"Start typing"}
@@ -44,7 +44,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setWhitePaperText(value);
+          dispatch(setProject({ ...project, category: value }));
         }}
         subTitle="Category (e.g Fashion, Food, Art, Digital Collectibles, Music, Digital Goods, Handyman)"
       />
@@ -55,7 +55,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setGoalText(value);
+          dispatch(setProject({ ...project, features: value }));
         }}
       />
       <EditableSection
@@ -65,7 +65,7 @@ export const SectionOneForm = () => {
           if (!value) {
             value = " ";
           }
-          setWhitePaperText(value);
+          dispatch(setProject({ ...project, blockchain: value }));
         }}
         subTitle="Preferred Blockchain for Minting (Ethereum, Binance Smart Chain, etc.)"
       />
@@ -74,29 +74,32 @@ export const SectionOneForm = () => {
 };
 
 export const SecondSectionForm = () => {
-  const [discordLink, setDiscordLink] = useState<string>("");
-  const [website, setWebsite] = useState<string>("");
-  const [discordID, setDiscordID] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const dispatch = useDispatch();
+  const project = useSelector(getProject);
 
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-      Business Information
+        Business Information
       </h2>
       <EditableSection
         title={"Business Information"}
         placeholder={"Start typing"}
         onChangeHandler={(value: string): void => {
-          setDiscordLink(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setProject({ ...project, business_information: value }));
         }}
-        // subTitle="Will be linked with launchpad"
       />
       <EditableSection
         title={"Business Type"}
         placeholder={"https:###"}
         onChangeHandler={(value: string): void => {
-          setWebsite(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setProject({ ...project, business_type: value }));
         }}
         subTitle="Business Type (e.g., Small Business, Microenterprise, Startup)"
       />
@@ -104,7 +107,10 @@ export const SecondSectionForm = () => {
         title={"Business Registration Number"}
         placeholder={"BS1120589"}
         onChangeHandler={(value: string): void => {
-          setDiscordID(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setProject({ ...project, registration_number: value }));
         }}
         subTitle="(if applicable)"
       />
@@ -113,7 +119,10 @@ export const SecondSectionForm = () => {
         title={" Business Website"}
         placeholder={"https:###"}
         onChangeHandler={(value: string): void => {
-          setEmail(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setProject({ ...project, website: value }));
         }}
         subTitle="(if available)"
       />
@@ -121,7 +130,10 @@ export const SecondSectionForm = () => {
         title={"Business Location"}
         placeholder={"Lagos, Nigeria"}
         onChangeHandler={(value: string): void => {
-          setEmail(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setProject({ ...project, location: value }));
         }}
         subTitle="(Address, City, Country)"
       />

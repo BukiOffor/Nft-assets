@@ -1,53 +1,57 @@
 "use client";
-import React, { useState } from "react";
-import { orbitron } from "@/fonts/fonts";
-import EditableSection from "@/common/EditableSection";
 import TextArea from "@/common/TextArea";
+import { orbitron } from "@/fonts/fonts";
+import { setTeam, getTeam } from "@/reducers/userSlice";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import EditableSection from "@/common/EditableSection";
 
 const TeamInformationForm: React.FC = () => {
-  const [members, setMembers] = useState<string>("");
-  const [twitterUrl, setTwitterUrl] = useState<string>("");
-  const [linkedUrl, setLinkedinUrl] = useState<string>("");
-
+  const dispatch = useDispatch();
+  const team = useSelector(getTeam);
   return (
     <div>
       <h2 className={`${orbitron.className} text-primary text-2xl mb-5`}>
-      Contact Information
+        Contact Information
       </h2>
       <EditableSection
         title={"Contact’s Full Name"}
         placeholder={"FullName"}
         onChangeHandler={(value: string): void => {
-          setMembers(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setTeam({ ...team, fullname: value }));
         }}
-        // subTitle="Please provide the names each team member and their roles"
       />
       <EditableSection
         title={"Role/Position"}
         placeholder={"Role"}
         onChangeHandler={(value: string): void => {
-          setTwitterUrl(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setTeam({ ...team, role: value }));
         }}
         subTitle="Contact Person's Position/Role in the Business"
-        // subTitle="Will be linked with launchpad"
       />
       <EditableSection
         title={"Email Address"}
         placeholder={"Launcpad@gmail.com"}
         onChangeHandler={(value: string): void => {
-          setLinkedinUrl(value);
+          if (!value) {
+            value = " ";
+          }
+          dispatch(setTeam({ ...team, email: value }));
         }}
-        // subTitle="Please provide the Linkedin link for each team member"
       />
       <EditableSection
         title={"Phone Number"}
         placeholder={"+234709843792"}
         onChangeHandler={(value: string): void => {
-          setLinkedinUrl(value);
+          dispatch(setTeam({ ...team, phone: value }));
         }}
-        // subTitle="Please provide the Linkedin link for each team member"
       />
-
     </div>
   );
 };

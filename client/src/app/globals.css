@@ -56,10 +56,9 @@ h1 {
 }
 
 .bg-blur {
-
   position: fixed;
   top: 0;
-  background: #1B0A1A;
+  background: #1b0a1a;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 20;

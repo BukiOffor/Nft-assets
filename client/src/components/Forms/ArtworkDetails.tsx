@@ -1,17 +1,15 @@
 "use client";
-import React, { useState, useRef } from "react";
-import { orbitron } from "@/fonts/fonts";
+import React from "react";
 import DropdownSelect from "@/common/Dropdown";
-import EditableSection from "@/common/EditableSection";
 import FileUploader from "@/common/FileUploader";
-import { poppins } from "@/fonts/fonts";
-
+import { orbitron, poppins } from "@/fonts/fonts";
+import { getArtworks, setArtworks } from "@/reducers/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import EditableSection from "@/common/EditableSection";
 
 const ArtworkDetailsForm: React.FC = () => {
-  const fileRef = useRef<HTMLInputElement>(null);
-  const [mintDate, setMintDate] = useState<string | number>("");
-  const [mintSupply, setMintSupply] = useState<number>(0);
-  const [mintPrice, setMintPrice] = useState<number | string>(0);
+  const dispatch = useDispatch();
+  const artworks = useSelector(getArtworks);
 
   return (
     <div>
@@ -23,13 +21,33 @@ const ArtworkDetailsForm: React.FC = () => {
         title={"Metadata and Description "}
         subTitle="Detailed Metadata and Description for the NFT (Title, Description, Tags, Keywords)"
         onChangeHandler={(value: string | number): void => {
-          setMintDate(value);
+          dispatch(setArtworks({ ...artworks, metadata: value }));
         }}
       />
+      <EditableSection
+        title={"Mint Price"}
+        placeholder={"2000"}
+        onChangeHandler={(value: string): void => {
+          dispatch(setArtworks({ ...artworks, price: value }));
+        }}
+        subTitle="Enter mint price"
+      />
+      <EditableSection
+        title={"Mint Supply"}
+        placeholder={"325"}
+        onChangeHandler={(value: string): void => {
+          dispatch(setArtworks({ ...artworks, supply: value }));
+        }}
+        subTitle="Enter mint supply"
+      />
       <div className={`${poppins.className} mb-5 flex flex-col`}>
-        <h2 className=" block text-white text-sm font-bold mb-2">Upload Image</h2>
-        <p className="text-sm text-gray-700">Upload Images, Videos, or Audio Files for the NFT</p>
-        <FileUploader ref={fileRef} />
+        <h2 className=" block text-white text-sm font-bold mb-2">
+          Upload Image
+        </h2>
+        <p className="text-sm text-gray-700">
+          Upload Images, Videos, or Audio Files for the NFT
+        </p>
+        <FileUploader />
       </div>
     </div>
   );

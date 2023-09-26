@@ -18,9 +18,21 @@ const Notification: React.FC = () => {
   };
 
   return (
-    <div className={Open ? "flex flex-row gap-10  min-h-screen" : ' flex flex-row min-h-screen gap-0'}>
-    <div className={Open ? "w-[11rem] laptop:w-[15rem] h-screen" : "relative w-[0rem]  h-screen"}>
-      {Open ? (
+    <div
+      className={
+        Open
+          ? "flex flex-row gap-10  min-h-screen"
+          : " flex flex-row min-h-screen gap-0"
+      }
+    >
+      <div
+        className={
+          Open
+            ? "w-[11rem] laptop:w-[15rem] h-screen"
+            : "relative w-[0rem]  h-screen"
+        }
+      >
+        {Open ? (
           <SideBar menuNav={menuNav} />
         ) : (
           <div className="absolute top-11 cursor-pointer" onClick={menuNav}>
@@ -28,7 +40,13 @@ const Notification: React.FC = () => {
           </div>
         )}
       </div>
-      <div className={Open ? "mr-auto w-[70%] py-10" : "w-[97%] tablet_l:w-[94%] laptop_l:w-[89%]  max-w-[1280px] mx-auto py-10 "}>
+      <div
+        className={
+          Open
+            ? "mr-auto w-[70%] py-10"
+            : "w-[97%] tablet_l:w-[94%] laptop_l:w-[89%]  max-w-[1280px] mx-auto py-10 "
+        }
+      >
         <NavTools title="Notifications" isMenu={true} />
         <div className="mr-3">
           <div className="flex justify-end mb-10 mt-14">
@@ -46,7 +64,7 @@ const Notification: React.FC = () => {
                   source={profile}
                 />
               </div>
-            )
+            ),
           )}
 
           <div className="flex justify-end mb-10 mt-14">

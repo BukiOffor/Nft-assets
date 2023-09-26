@@ -13,14 +13,22 @@ import {
   polygon,
   moonbeam,
   moonbaseAlpha,
+  gnosisChiado,
 } from "wagmi/chains";
 
-const chains = [arbitrum, mainnet, polygon, moonbeam, moonbaseAlpha];
+const chains = [
+  arbitrum,
+  mainnet,
+  polygon,
+  moonbeam,
+  moonbaseAlpha,
+  gnosisChiado,
+];
 
 const projectId = "34043931dedf67433e6f95bfa3205586"; //process.env.API_KEY as string
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
-const wagmiConfig = createConfig({
+export const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: w3mConnectors({ projectId, chains }),
   publicClient,

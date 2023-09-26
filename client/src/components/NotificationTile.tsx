@@ -15,11 +15,12 @@ const NotificationTile: React.FC<NotificationTileProps> = (props) => {
     <div className="flex justify-between gap-2 mb-10 cursor-pointer">
       <div className="flex gap-4 ">
         <div>
-        <Image src={source} height={60} width={60} alt={"profile-image"} />
-
+          <Image src={source} height={60} width={60} alt={"profile-image"} />
         </div>
         <div className="flex flex-col">
-          <h4 className={`${orbitron.className} text-lg laptop:text-xl`}>{title}</h4>
+          <h4 className={`${orbitron.className} text-lg laptop:text-xl`}>
+            {title}
+          </h4>
           <p className="text-sm laptop:text-md">{message}</p>
         </div>
       </div>

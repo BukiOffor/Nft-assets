@@ -5,7 +5,7 @@ class Upload {
     static imageUpload() {
         const storage = multer.diskStorage({
             destination: (req, file, cb) => {
-                const uploadDir = ('uploads');
+                const uploadDir = "uploads/";
                 fs.mkdirSync(uploadDir, { recursive: true });
                 cb(null, uploadDir);
             },

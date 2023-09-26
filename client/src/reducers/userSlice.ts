@@ -1,116 +1,46 @@
-import { UserInterface } from "@/interfaces/user_interface";
+import { LaunchPadInterface } from "@/interfaces/launchpad_interface";
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-const initialState: UserInterface = {
-  title: null,
-  description: null,
-  whitepaper: null,
-  goal: null,
-  discordLink: null,
-  website: null,
-  email: null,
-  discordId: null,
-  members: null,
-  twitter: null,
-  linkedin: null,
-  nft_type: null,
-  mint_date: null,
-  mint_price: 0,
-  mint_supply: 0,
-  marketing_plan: null,
-  presale: null,
-  more_info: null,
+const initialState: LaunchPadInterface = {
+  project: {
+    title: null,
+  },
+  artworks: {
+    price: null,
+  },
+  team: {},
+  sales: {},
+  social: {},
 };
-
 export const usersSlice = createSlice({
   name: "userss",
   initialState,
   reducers: {
-    setTitle: (state, action) => {
-      state.title = action.payload;
+    setProject: (state, action) => {
+      state.project = action.payload;
     },
-    setDescription: (state, action) => {
-      state.description = action.payload;
+    setTeam: (state, action) => {
+      state.team = action.payload;
     },
-    setWhitepaper: (state, action) => {
-      state.whitepaper = action.payload;
+    setSales: (state, action) => {
+      state.sales = action.payload;
     },
-    setGoalText: (state, action) => {
-      state.goal = action.payload;
+    setArtworks: (state, action) => {
+      state.artworks = action.payload;
     },
-    setDiscordLink: (state, action) => {
-      state.discordLink = action.payload;
-    },
-    setEmail: (state, action) => {
-      state.email = action.payload;
-    },
-    setDiscordId: (state, action) => {
-      state.discordId = action.payload;
-    },
-    setWebsite: (state, action) => {
-      state.website = action.payload;
-    },
-    setMembers: (state, action) => {
-      state.members = action.payload;
-    },
-    setTwitter: (state, action) => {
-      state.twitter = action.payload;
-    },
-    setLinkedin: (state, action) => {
-      state.linkedin = action.payload;
-    },
-    setNftType: (state, action) => {
-      state.nft_type = action.payload;
-    },
-    setMintPrice: (state, action) => {
-      state.mint_price = action.payload;
-    },
-    setMintSupply: (state, action) => {
-      state.mint_supply = action.payload;
-    },
-    setMintDate: (state, action) => {
-      state.mint_date = action.payload;
-    },
-    setMarketingPlan: (state, action) => {
-      state.marketing_plan = action.payload;
-    },
-    setPresale: (state, action) => {
-      state.presale = action.payload;
-    },
-    setMoreInfo: (state, action) => {
-      state.more_info = action.payload;
+    setSocial: (state, action) => {
+      state.social = action.payload;
     },
   },
 });
 
-export const getTitle = (state: RootState) => state.users.title;
-export const getDescription = (state: RootState) => state.users.description;
-export const getWhitepaper = (state: RootState) => state.users.whitepaper;
-export const getGoalText = (state: RootState) => state.users.goal;
-export const getEmail = (state: RootState) => state.users.email;
-export const getWebsite = (state: RootState) => state.users.website;
-export const getDiscordId = (state: RootState) => state.users.discordId;
-export const getDiscordLink = (state: RootState) => state.users.discordLink;
+export const getProject = (state: RootState) => state.users.project;
+export const getSales = (state: RootState) => state.users.sales;
+export const getArtworks = (state: RootState) => state.users.artworks;
+export const getTeam = (state: RootState) => state.users.team;
+export const getSocial = (state: RootState) => state.users.social;
 
-export const {
-  setTitle,
-  setDescription,
-  setWhitepaper,
-  setEmail,
-  setDiscordId,
-  setWebsite,
-  setGoalText,
-  setDiscordLink,
-  setLinkedin,
-  setMarketingPlan,
-  setMembers,
-  setMintDate,
-  setMintPrice,
-  setMintSupply,
-  setMoreInfo,
-  setNftType,
-  setPresale,
-  setTwitter,
-} = usersSlice.actions;
+export const { setProject, setTeam, setArtworks, setSales, setSocial } =
+  usersSlice.actions;
 export default usersSlice.reducer;

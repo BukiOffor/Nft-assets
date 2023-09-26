@@ -13,12 +13,16 @@ const Onboarding: React.FC<GetStartedProps> = ({ nextPage }) => {
     <div className={`w-[96%] tablet_l:w-[95%] mb-12 ${poppins.className} `}>
       <div>
         <div
-         style={{
+          style={{
             background:
               "linear-gradient(134deg, rgba(255, 199, 44, 0.16) 4.92%, rgba(255, 199, 44, 0.00) 50%)",
           }}
-        className="border-[2px] text-primary border-primary border-opacity-25 py-2 px-3 w-fit rounded-lg">
-            Ongoing <span className="text-[15px] font-[400] ml-3 text-gray-400">Upcoming</span>
+          className="border-[2px] text-primary border-primary border-opacity-25 py-2 px-3 w-fit rounded-lg"
+        >
+          Ongoing{" "}
+          <span className="text-[15px] font-[400] ml-3 text-gray-400">
+            Upcoming
+          </span>
         </div>
         <div className="mt-8 mb-16 flex justify-between w-[90%] tablet_l:w-[100%] laptop_l:w-[85%] flex-wrap gap-y-7 gap-x-3">
           <div
@@ -53,11 +57,11 @@ const Onboarding: React.FC<GetStartedProps> = ({ nextPage }) => {
 
                 <div className={`flex justify-between`}>
                   <div className="text-white">
-                    <p className='text-[12px]'>Floor</p>
+                    <p className="text-[12px]">Floor</p>
                     <p>0.05 ETH</p>
                   </div>
                   <div className="text-white">
-                    <p className='text-[12px]'>Total Volume</p>
+                    <p className="text-[12px]">Total Volume</p>
                     <p>14.1K ETH</p>
                   </div>
                 </div>
@@ -97,11 +101,11 @@ const Onboarding: React.FC<GetStartedProps> = ({ nextPage }) => {
 
                 <div className={`flex justify-between`}>
                   <div className="text-white">
-                    <p className='text-[12px]'>Floor</p>
+                    <p className="text-[12px]">Floor</p>
                     <p>0.05 ETH</p>
                   </div>
                   <div className="text-white">
-                    <p className='text-[12px]'>Total Volume</p>
+                    <p className="text-[12px]">Total Volume</p>
                     <p>14.1K ETH</p>
                   </div>
                 </div>
@@ -141,11 +145,11 @@ const Onboarding: React.FC<GetStartedProps> = ({ nextPage }) => {
 
                 <div className={`flex justify-between`}>
                   <div className="text-white">
-                    <p className='text-[12px]'>Floor</p>
+                    <p className="text-[12px]">Floor</p>
                     <p>0.05 ETH</p>
                   </div>
                   <div className="text-white">
-                    <p className='text-[12px]'>Total Volume</p>
+                    <p className="text-[12px]">Total Volume</p>
                     <p>14.1K ETH</p>
                   </div>
                 </div>
@@ -185,11 +189,11 @@ const Onboarding: React.FC<GetStartedProps> = ({ nextPage }) => {
 
                 <div className={`flex justify-between`}>
                   <div className="text-white">
-                    <p className='text-[12px]'>Floor</p>
+                    <p className="text-[12px]">Floor</p>
                     <p>0.05 ETH</p>
                   </div>
                   <div className="text-white">
-                    <p className='text-[12px]'>Total Volume</p>
+                    <p className="text-[12px]">Total Volume</p>
                     <p>14.1K ETH</p>
                   </div>
                 </div>

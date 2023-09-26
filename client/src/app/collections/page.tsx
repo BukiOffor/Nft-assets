@@ -12,19 +12,20 @@ import MarketTrend from "@/components/MarketTrend";
 const collections: React.FC = () => {
   return (
     <>
-    <div className="z-50">
-      <TopNavigation />
-
-    </div>
+      <div className="z-50">
+        <TopNavigation />
+      </div>
       <div className="mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px]">
         {/* <SearchCollection /> */}
         <ColletionHeader />
         <TrendingCollection />
         <NSMECollection />
         <TopSellers />
-        <MarketTrend />
+        <div className="mx-auto w-[95%] laptop_l:w-[920px]">
+          <MarketTrend />
+        </div>
       </div>
-        <Footer />
+      <Footer />
     </>
   );
 };

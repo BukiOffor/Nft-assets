@@ -24,9 +24,7 @@ const DropdownSelect: React.FC<DropdownList> = ({
 
   return (
     <div className={`${poppins.className} mb-5 flex flex-col`}>
-      <h2 className=" block text-white text-sm font-bold mb-2">
-        {title}
-      </h2>
+      <h2 className=" block text-white text-sm font-bold mb-2">{title}</h2>
       {subTitle && <p className="text-sm text-gray-700">{subTitle}</p>}
       <div className="mt-2">
         <select

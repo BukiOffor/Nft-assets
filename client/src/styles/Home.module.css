@@ -6,11 +6,12 @@
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 120%;
+  font-size: 18px;
+  line-height: 100%;
   border-radius: 8px;
   color: white;
   border: none;
+  padding: 14px 35px;
   cursor: pointer;
 }
 
@@ -275,7 +276,7 @@
 
 .about_top {
   margin-left: 80.81px;
-  margin-top: 60px;
+  margin-top: 120px;
   display: flex;
   gap: 52px;
 }
@@ -417,9 +418,9 @@
 .mint_details {
   display: flex;
   justify-content: space-between;
-  gap: 160px;
+  /* gap: 160px; */
   /* background-color: green; */
-  margin-left: 80.81px;
+  /* margin-left: 80.81px; */
 }
 
 .mint_details .left {
@@ -466,7 +467,7 @@
   backdrop-filter: blur(22px);
   border-radius: 16px;
   width: 420px;
-  height: 522px;
+  /* height: 522px; */
   border-radius: 16px;
   margin-top: 63px;
   padding: 54px 30px;
@@ -551,20 +552,22 @@
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
-  line-height: 120%;
-  width: 360px;
-  height: 60px;
+  /* line-height: 120%; */
+  width: 100%;
+  padding: 8px;
+  /* margin: 10px 0; */
+  /* height: 60px; */
   text-align: center;
   color: #ffffff;
 }
 
 .mint_details .mint_btn p {
   width: 363px;
-  height: 44px;
+  /* height: 44px; */
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 120%;
   color: #dcdcdc;
   margin-top: 15px;

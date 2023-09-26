@@ -5,7 +5,7 @@ import Image from "next/image";
 const TopSellers = () => {
   return (
     <div className={`${orbitron.className} my-28`}>
-      <h2 className="text-2xl text-white text-center">Top Sellers</h2>
+      <h2 className="text-2xl text-center text-white">Top Sellers</h2>
       <div className="flex justify-center my-8">
         <DateSelection />
       </div>
@@ -14,7 +14,7 @@ const TopSellers = () => {
           .fill(null)
           .map((_, index) => (
             <div
-              className="flex space-x-4 mb-5 w-full tablet_l:w-[45%] bg-sidebar rounded-md px-4 py-2 items-center"
+              className="flex space-x-4 mb-5 w-full tablet_l:w-[45%] bg-sidebar rounded-md px-4 py-2 items-center text-white"
               key={index}
               style={{
                 border: "2px solid transparent",
@@ -30,9 +30,9 @@ const TopSellers = () => {
                 className="rounded-full"
               />
 
-              <div className="w-full">
+              <div className="w-full text-white">
                 <div className=" flex flex-row space-x-2">
-                  <h3 className="text-white">Shoe Fac NFTs</h3>
+                  <h3>Shoe Fac NFTs</h3>
                   <Image
                     src="/outline-badge.svg"
                     alt="badge"
@@ -42,7 +42,7 @@ const TopSellers = () => {
                   />
                 </div>
 
-                <div className="flex text-white justify-between">
+                <div className="flex justify-between">
                   <div>
                     <p className="text-xs">Floor</p>
                     <p className="text-sm">0.05 ETH</p>

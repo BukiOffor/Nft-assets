@@ -16,22 +16,18 @@
   - [Install Hardhat](#install-hardhat)
   - [Env Setup](#env-setup)
   - [Setup Hardhat.config](#setup-hardhatconfig)
-- [Create the SmartContract](#create-the-smartcontract)
-  - [Compile](#compile)
-  - [Deploy](#deploy)
-  - [Verify](#verify)
 - [Setup the Frontend](#setup-the-frontend)
   - [Install Dependencies](#install-dependencies)
   - [Steps to host the live site on Vercel](#steps-to-host-the-live-site-on-vercel)
 - [Testing the Smartcontract](#testing-the-smartcontract)
-- [NFT-Factory-MVP Contract Address](#PrismVox-contract-address)
+- [NFT-Factory-MVP Contract Address](#Nft-factory-contract-address)
 - [Live Link](#live-link)
 - [Contributors](#contributors)
 - [Contributing to the project](#contributing-to-the-project)
 #
 > ## Overview
 <p align="justify">
-NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing access to financial assets by tokenizing real-world assets seamlessly on the Celo blockchain. This repository contains the Minimum Viable Product (MVP) of the NFT Factory, providing the foundation for creating and managing NFTs representing real-world assets.
+NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing access to financial assets by tokenizing real-world assets seamlessly on the Gnosis blockchain. This repository contains the Minimum Viable Product (MVP) of the NFT Factory, providing the foundation for creating and managing NFTs representing real-world assets.
 </p>
 
 
@@ -43,7 +39,12 @@ NFT Factory is a groundbreaking project by Zeus Labs aimed at democratizing acce
 - Deployment on Gnosis chain for the purpose of this hackhathon.
 
 
-> plss for who is working on the smartcontract, plsss add all the core features of the smart contract here 
+- data base for storage purpose
+- Nsme create the nfts
+- end users can mint
+- end user can list
+- end users can redeem their nft
+- market place for end users
 
 
 `Test Coverage`
@@ -111,29 +112,6 @@ $ npm install --save-dev "@nomiclabs/hardhat-waffle" "ethereum-waffle" "chai" "@
 > ### Env Setup
  Next create a `.env` file by using the sample.env. Retrieve your information from the relevant sites and input the information where needed in the `.env` file.
 
-`To retrieve your metamask private key.`
-- Open your account details by clicking on the three dots on the metamask extension on your chrome browser
-- Click on export private key
-- Verify your password
-- Copy your private key and place it in the .env file
-
-<p align="center" width="100%">
-  <img src="https://drive.google.com/uc?export=view&id=1oDl0IbicD7LhNOcYUbGzBYTJdduWim1t" alt="metamask"/>
-</p>
-
-#
-`To retrieve your alchemy key.`
-- Login to your account on [alchemy](https://www.alchemy.com/)
-- Once you're redirected to your [dashboard](https://dashboard.alchemyapi.io/), click on create app.
-- Fill in the relevant details especially the chain and network
-- Once the app has been created, click on view key.
-- Copy the HTTP and place it in the .env file.
-
-<p align="center" width="100%">
-  <img src="https://drive.google.com/uc?export=view&id=1vPvT5LJRJy6B8hSi_3mPo16wC4u6MnEK" alt="alchemy"/>
-  
-</p>
-
 #
 `To retrieve your gnosis key.`
 - Login to [gnosisscan](https://gnosisscan.io/) and hover over the dropdown arrow for your profile on the navbar.
@@ -144,39 +122,6 @@ $ npm install --save-dev "@nomiclabs/hardhat-waffle" "ethereum-waffle" "chai" "@
 <p align="center" width="100%">
   <img src="https://github.com/BukiOffor/Nft-assets/assets/58889001/9668a40f-73d2-4fd5-8adf-91059880b69e" alt="gnosis key"/>
 </p>
-
-#
-> ### Setup Hardhat.config
-
-
-Below is the setup for the hardhat.config.json
-
-<p align="center" width="100%">
-  <img src="https://drive.google.com/uc?export=view&id=1-vWH8_zI8DTzvnRM4gcwX2HWsHuCd0O0" alt="hardhat"/>
-</p>
-
-#
-> ## Create the SmartContract
-  - First write the Smartcontract codes within the contracts folder.
-  - The next step involves the compilation, deployment and verification of the contract on the testnet.
-
-> ### Compile
-- To compile the smartcontract before deployment:
-```
-$ npx hardhat compile
-```
-#
-> ### Deploy
-- To deploy the smartcontract:
-```
-$ npx hardhat run scripts/deploy.js --network gnosischain
-```
-#
-> ### Verify
-- To verify the smartcontract:
-```
-$ npx hardhat verify  --network gnosischain
-```
 
 #
 > ## Setup the Frontend
@@ -231,22 +176,41 @@ $ npx hardhat coverage --network localhost
 # if you get errors and you want to trace the error in the terminal
 $ npx hardhat coverage --network localhost --show-stack-traces
 ```
-#
-
-<p align="center" width="100%">
-  <img src="https://drive.google.com/uc?export=view&id=16zXW2QHBBinyC0adq1Cd41YUD1grjR1X" alt="coverage tests"/>
-</p>
-
 
 #
-> ## Factory Contract Address
+> ## Factory Contract Address/ Available 2 transaction hash 
 
--https://gnosisscan.io//address/
+- https://gnosis-chiado.blockscout.com/address/0x950384443e2455E93010BeeC53Fd24e3aaD04C67
+
+Tx:
+
+-
+0x4f60fbb2a2d0c0162c7357ea0fd67492577168690e170d24aeb1fe60fd3afd0c
+
+
+- 0x289fe2781066b37e1e211065281f0671dd72e115da9237e7f10b6829b58071d3
+
+the transaction hashes
+
+
 # 
 
 ## Useful links
-- [Demo]()
-- [Frontend Deployment]( https://nft-assets-rxzk.vercel.app/)
+
+## View attribution files here
+
+https://docs.google.com/document/d/1TXCMG2I1hF8gLAJNjz69bioiZXOVwK0crSlhXWqMDvw/edit?usp=sharing
+
+## Explainer video (User POV)
+
+https://github.com/BukiOffor/Nft-assets/assets/58889001/f8eb776e-df15-4eab-aca5-a535430c4e54
+
+## Demo Video (Clients POV)
+
+https://github.com/BukiOffor/Nft-assets/assets/58889001/42d9ea71-95ca-4995-be80-9825080295be
+
+
+- [Frontend Deployment](https://nft-assets-c8r6.vercel.app/)
 - [Figma design](https://www.figma.com/proto/dV2FBUaa7BomJu7JCWjL1Z/Webpage-Redesign?page-id=67%3A823&type=design&node-id=348-3699&viewport=7528%2C-2452%2C0.51&t=6PGceqXUTERPd9EJ-1&scaling=scale-down&starting-point-node-id=348%3A3699&mode=design)
 
 
@@ -272,5 +236,5 @@ Before adding a pull request, please note:
 
 All **`suggestions`** are welcome!
 #
-> ##### README Created by `Enebeli Emmanuel` for NFT-FACTORY
+> ##### README Created by `Enebeli Emmanuel` for Zeus Labs
 

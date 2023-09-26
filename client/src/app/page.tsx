@@ -24,7 +24,9 @@ export default function Home() {
         <div className="w-[97%] tablet_l:w-[94%] laptop_l:w-[89%]  max-w-[1280px] mx-auto">
           <section className="bg-green- flex flex-col tablet_l:flex-row justify-between items-center mt-6">
             <div className=" my-8 tablet_l:my-0 w-full tablet_l:w-[53%] laptop_l:w-[500px]">
-              <h1 className={`${orbitron.className} text-primary text-3xl laptop_l:text-4xl`}>
+              <h1
+                className={`${orbitron.className} text-primary text-3xl laptop_l:text-4xl`}
+              >
                 Create and manage your own NFTs, collaborate with consumers.
               </h1>
               <p className="mb-10 mt-2 text-white">

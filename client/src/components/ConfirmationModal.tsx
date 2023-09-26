@@ -8,7 +8,7 @@ import { orbitron } from "@/fonts/fonts";
 
 const ConfirmationModal = () => {
   return (
-    <div className="flex justify-center relative">
+    <div className="flex justify-center text-white relative">
       <div
         className="w-3/5 flex justify-center flex-col items-center pt-14 pb-5"
         style={{
