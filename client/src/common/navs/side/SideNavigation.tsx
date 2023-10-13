@@ -1,6 +1,7 @@
 "use client";
 import Logo from "@/common/Logo";
 import { poppins } from "@/fonts/fonts";
+import { sideNavRoutes } from "@/routes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,24 +13,7 @@ interface SideBarProps {
 
 const SideBar: React.FC<SideBarProps> = ({ menuNav }) => {
   const pathName = usePathname();
-
-  const navigationLinks = [
-    {
-      name: "Launchpad",
-      icon: "/images/rocket_launch.svg",
-      to: "/launchpad",
-    },
-    {
-      name: "Analytics",
-      icon: "/images/trending-up.svg",
-      to: "/analytics",
-    },
-    {
-      name: "Notifications",
-      icon: "/images/bell.svg",
-      to: "/notification",
-    },
-  ];
+  
   return (
     <div>
       <div
@@ -47,7 +31,7 @@ const SideBar: React.FC<SideBarProps> = ({ menuNav }) => {
           <Logo height={30} />
         </div>
         <div className="flex flex-col py-10">
-          {navigationLinks.map(({ name, to, icon }) => (
+          {sideNavRoutes.map(({ name, to, icon }) => (
             <Link
               key={name}
               href={to}

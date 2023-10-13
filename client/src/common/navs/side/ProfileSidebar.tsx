@@ -1,15 +1,9 @@
 "use client";
-import Logo from "@/common/Logo";
 import { poppins } from "@/fonts/fonts";
-import Image from "next/image";
+import { profileRoutes } from "@/routes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
-import { BsCollection } from "react-icons/bs";
-import { FiHelpCircle } from "react-icons/fi";
-import { BiWorld } from "react-icons/bi";
-import { IoMdNotifications } from "react-icons/io";
 
 interface ProfileSideBarProps {
   menuNav: () => void; // Define the prop type for menuNav
@@ -18,38 +12,6 @@ interface ProfileSideBarProps {
 const ProfileSideBar: React.FC<ProfileSideBarProps> = ({ menuNav }) => {
   const pathName = usePathname();
 
-  const navigationLinks = [
-    {
-      name: "Profile",
-      icon: <CgProfile size={25} />,
-      to: "#",
-    },
-    {
-      name: "My Collections",
-      icon: <BsCollection size={25} />,
-      to: "#",
-    },
-    {
-      name: "Notifications",
-      icon: <IoMdNotifications size={25} />,
-      to: "#",
-    },
-    {
-      name: "Settings",
-      icon: <IoMdNotifications size={25} />,
-      to: "#",
-    },
-    {
-      name: "Help Center",
-      icon: <FiHelpCircle size={25} />,
-      to: "#",
-    },
-    {
-      name: "Language",
-      icon: <BiWorld size={25} />,
-      to: "#",
-    },
-  ];
   return (
     <div>
       <div
@@ -66,7 +28,7 @@ const ProfileSideBar: React.FC<ProfileSideBarProps> = ({ menuNav }) => {
           <AiOutlineMenu className="h-6 w-6 text-white items-center" />
         </div>
         <div className="flex flex-col">
-          {navigationLinks.map(({ name, to, icon }) => (
+          {profileRoutes.map(({ name, to, icon }) => (
             <Link
               key={name}
               href={to}
