@@ -12,7 +12,7 @@ class ResponseHandler {
         return res.status(code).send({ statusCode: code, message: message });
     }
     static sendErrorResponse(res, code, error) {
-        return res.status(code).send({ statusCode: code, error: error });
+        return res.status(code).send({ statusCode: code, message: error });
     }
 }
 
