@@ -18,7 +18,6 @@ export const SectionOneForm = () => {
         title={"Project Title"}
         placeholder={"Title"}
         onChangeHandler={(value: string): void => {
-          console.log(value);
           if (!value) {
             value = " ";
           }

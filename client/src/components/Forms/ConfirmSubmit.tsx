@@ -1,8 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { orbitron } from "@/fonts/fonts";
 import Button from "@/common/Button";
 import Image from "next/image";
+import APIService from "@/http/api_service";
+import { useSelector } from "react-redux";
+import { 
+  getProject,  
+  getSales, 
+  getTeam, 
+  getArtworks, 
+  getSocial
+} from "@/reducers/userSlice";
+import {toast} from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 interface GetStartedProps {
   cancel: () => void;
@@ -10,8 +21,15 @@ interface GetStartedProps {
 }
 
 const ConfirmSubmit: React.FC<GetStartedProps> = ({ cancel, nextPage }) => {
+  const project = useSelector(getProject);
+  const sales = useSelector(getSales);
+  const team = useSelector(getTeam);
+  const artworks = useSelector(getArtworks);
+  const socials = useSelector(getSocial);
+
   const [isChecked, setIsChecked] = useState(true);
   const [subcom, setSubcom] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const check = () => {
     setIsChecked(!isChecked);
@@ -21,11 +39,28 @@ const ConfirmSubmit: React.FC<GetStartedProps> = ({ cancel, nextPage }) => {
     setSubcom(!subcom);
   };
 
-  const submitsucces = () => {
-    nextPage();
-    setSubcom(!subcom);
-  };
-
+  const handleProjectSubmit = () => {
+    console.log("loading...");
+    setLoading(true);
+    const requestBody = {
+      ...project,
+      ...team,
+      ...sales,
+      ...artworks,
+      ...socials,
+    };
+    APIService.createLaunchPackage(requestBody, (response: any, error: any) => { 
+      if(error){
+        setLoading(false);
+        toast.error(error, { theme: "colored" });
+          setSubcom(!subcom);
+      }
+        toast.success(response["message"], {theme: "colored"});
+        setSubcom(!subcom);
+        setLoading(false);
+    })
+  }
+  
   return (
     <>
       {subcom && (
@@ -59,10 +94,15 @@ const ConfirmSubmit: React.FC<GetStartedProps> = ({ cancel, nextPage }) => {
             </p>
             <div className="flex justify-center my-10">
               <Button
-                handleClick={submitsucces}
+                handleClick={handleProjectSubmit}
                 className="bg-gradient-linear px-6 mb-5 py-3"
               >
-                <p> Submit</p>
+                <div className="flex justify-between space-x-2">
+                {loading && 
+                <ClipLoader 
+                color="#fff" loading={loading} size={25}/>}
+                <p>Submit</p>
+                </div>
               </Button>
             </div>
             <div className="w-[90%] tablet_l:w-[650px] mx-auto flex items-start gap-3">

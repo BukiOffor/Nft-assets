@@ -13,9 +13,18 @@ type Props = {
 };
 
 const TextArea: React.FC<Props> = (props) => {
-  const { title, subTitle, placeholder, style } = props;
+  const { title, subTitle, placeholder, style, onChangeHandler } = props;
 
   const [value, setValue] = useState<string>("");
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (onChangeHandler) {
+        onChangeHandler(value);
+      }
+    }, 1000);
+    return () => clearTimeout(delayDebounceFn);
+  }, [value]);
 
   return (
     <div
