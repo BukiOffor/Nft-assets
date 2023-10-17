@@ -2,7 +2,11 @@ import { setProject } from "@/reducers/userSlice";
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-const initialState = {
+type Project = {
+  projectItem: any;
+};
+
+const initialState: Project = {
   projectItem: {},
 };
 

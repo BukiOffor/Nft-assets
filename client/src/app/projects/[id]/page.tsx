@@ -1,19 +1,23 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import APIService from "@/http/api_service";
-import { toast } from "react-toastify";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import TopNavigation from "@/common/navs/top/TopNavigation";
-import { orbitron } from "@/fonts/fonts";
-import { poppins } from "@/fonts/fonts";
-import Footer from "@/components/Footer";
-import { ScaleLoader } from "react-spinners";
 import Button from "@/common/Button";
+import TopNavigation from "@/common/navs/top/TopNavigation";
+import Footer from "@/components/Footer";
+import { orbitron, poppins } from "@/fonts/fonts";
+import APIService from "@/http/api_service";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { ScaleLoader } from "react-spinners";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { setProjectItem } from "@/reducers/project_slice";
+import { useDispatch } from "react-redux";
 
 const Details = () => {
+  const dispatch = useDispatch();
   const pathName = usePathname();
+  const router = useRouter();   
   const segments = pathName.split("/");
   const id = segments[segments.length - 1];
 
@@ -30,6 +34,7 @@ const Details = () => {
       }
       setLoading(false);
       setDetails({ ...response?.data });
+      dispatch(setProjectItem({...response?.data}));
     });
   }, []);
 
@@ -38,7 +43,7 @@ const Details = () => {
   };
 
   const mintProject = () => {
-    console.log("mint project");
+    router.push(`${pathName}/purchase`);
   };
 
   return (
@@ -46,10 +51,12 @@ const Details = () => {
       <TopNavigation />
       <div>
         {loading && 
-        <ScaleLoader color="#FFC72C"/>}
+        <div className="flex justify-center p-10">
+        <ScaleLoader color="#FFC72C"/>
+        </div>}
       </div>
       {
-        !loading && 
+        !loading && Object.entries(detail)?.length &&
       <div className="text-white">
         <div className="flex gap-8 gap-y-16 items-end flex-col tablet_l:flex-row mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px]">
           <div className="mr-auto">
@@ -59,7 +66,7 @@ const Details = () => {
                 alt="artwork"
                 height={800}
                 width={808}
-                className="w-[100%] tablet_l:w-[350px] max-w-[400px] "
+                className="w-[100%] tablet_l:w-[350px] max-w-[400px]"
               />
             )}
             <p
