@@ -1,14 +1,13 @@
-import Button from "@/common/Button";
 import { orbitron } from "@/fonts/fonts";
 import { Modal } from "@/types/marketplace";
-import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faExternalLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
-const ConfirmationModal = ({title, body, showModal, setShowModal}: Modal) => {
+const ProcessingModal = ({title, body, showModal, setShowModal}: Modal) => {
   return (
-    <div className="flex justify-center text-white relative">
+    <div className="flex justify-center text-white">
       <div
         className="relative w-3/5 flex justify-center flex-col items-center pt-14 pb-5"
         style={{
@@ -22,7 +21,7 @@ const ConfirmationModal = ({title, body, showModal, setShowModal}: Modal) => {
           <FontAwesomeIcon icon={faClose} className='text-primary text-xl' />
         </div>
         <h2 className={`${orbitron.className} text-2xl`}>
-          {title || "Congralutaions It&apos;s Yours!"}
+          {title || "Congratulations It's Yours!"}
         </h2>
         <p>{body}</p>
         <div>
@@ -31,6 +30,7 @@ const ConfirmationModal = ({title, body, showModal, setShowModal}: Modal) => {
             className="flex justify-center items-center gap-2 p-3 text-primary"
           >
             <p>View-On Explorer</p>
+            {/* <FontAwesomeIcon icon={faExternalLink} /> */}
             <Image 
           src="/external-link.svg" alt="external-link"
                 height={20}
@@ -38,21 +38,9 @@ const ConfirmationModal = ({title, body, showModal, setShowModal}: Modal) => {
                 />
           </Link>
         </div>
-
-        <Button className="flex justify-center items-center gap-2 bg-gradient-linear px-5 py-2">
-          <span>Share on Twitter</span>
-          <Image
-            src="/twitter.svg"
-            alt="Twitter Logo"
-            className="light:invert"
-            width={20}
-            height={20}
-            priority
-          />
-        </Button>
       </div>
     </div>
   );
 };
 
-export default ConfirmationModal;
+export default ProcessingModal;
