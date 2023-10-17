@@ -10,6 +10,7 @@ import { orbitron } from "@/fonts/fonts";
 import { poppins } from "@/fonts/fonts";
 import Footer from "@/components/Footer";
 import { ScaleLoader } from "react-spinners";
+import Button from "@/common/Button";
 
 const Details = () => {
   const pathName = usePathname();
@@ -18,6 +19,7 @@ const Details = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [detail, setDetails] = useState<any>({});
+  const [isRedeemed, setIsRedeemed] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -30,6 +32,14 @@ const Details = () => {
       setDetails({ ...response?.data });
     });
   }, []);
+
+  const redeemProject = () => {
+    console.log("redeem project");
+  };
+
+  const mintProject = () => {
+    console.log("mint project");
+  };
 
   return (
     <div className="mt-24">
@@ -76,7 +86,7 @@ const Details = () => {
           <p className={`${orbitron.className} text-2xl `}>
             Product/Package type
           </p>
-          <p className="bg-[#FFC72C] h-[1.5px] my-7"></p>
+          <p className="bg-[#FFC72C] h-[1.5px] mt-6 mb-2"></p>
           <div className="flex flex-wrap gap-5 justify-between">
             <p className="flex flex-col text-[15px]">
               Unique Owners
@@ -91,15 +101,19 @@ const Details = () => {
                 {detail?.price}
               </p>
             </div>
-            {/* {isRedeemed ? (
-            <button className={styles.home_btn} onClick={Redeem}>
-              Redeem
-            </button>
+            {isRedeemed ? (
+              <Button 
+              className="bg-gradient-linear rounded-md px-24 py-2 text-[24px]"
+              handleClick={redeemProject}> 
+                Reedem
+              </Button>
           ) : (
-            <button className={styles.home_btn} onClick={Mint}>
-              Mint
-            </button>
-          )} */}
+            <Button 
+            className="bg-gradient-linear rounded-md px-24 py-2 text-[24px]"
+            handleClick={mintProject}> 
+                Mint
+            </Button>
+          )}
           </div>
         </div>
       </div>
