@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
 
-const ProcessingModal = ({title, body, showModal, setShowModal}: Modal) => {
+const ProcessingModal = ({ title, body, showModal, setShowModal }: Modal) => {
   return (
     <div className="flex justify-center text-white">
       <div
@@ -15,10 +15,11 @@ const ProcessingModal = ({title, body, showModal, setShowModal}: Modal) => {
             "linear-gradient(150deg, rgba(255, 199, 44, 0.16) 0%, rgba(19, 7, 18, 1) 100%)",
         }}
       >
-        <div 
-        className='absolute top-5 right-10 cursor-pointer' 
-        onClick={() => setShowModal && setShowModal(!showModal)}>
-          <FontAwesomeIcon icon={faClose} className='text-primary text-xl' />
+        <div
+          className="absolute top-5 right-10 cursor-pointer"
+          onClick={() => setShowModal && setShowModal(!showModal)}
+        >
+          <FontAwesomeIcon icon={faClose} className="text-primary text-xl" />
         </div>
         <h2 className={`${orbitron.className} text-2xl`}>
           {title || "Congratulations It's Yours!"}
@@ -31,11 +32,12 @@ const ProcessingModal = ({title, body, showModal, setShowModal}: Modal) => {
           >
             <p>View-On Explorer</p>
             {/* <FontAwesomeIcon icon={faExternalLink} /> */}
-            <Image 
-          src="/external-link.svg" alt="external-link"
-                height={20}
-                width={20}
-                />
+            <Image
+              src="/external-link.svg"
+              alt="external-link"
+              height={20}
+              width={20}
+            />
           </Link>
         </div>
       </div>

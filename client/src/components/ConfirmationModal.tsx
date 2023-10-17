@@ -1,12 +1,12 @@
 import Button from "@/common/Button";
 import { orbitron } from "@/fonts/fonts";
 import { Modal } from "@/types/marketplace";
-import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 
-const ConfirmationModal = ({title, body, showModal, setShowModal}: Modal) => {
+const ConfirmationModal = ({ title, body, showModal, setShowModal }: Modal) => {
   return (
     <div className="flex justify-center text-white relative">
       <div
@@ -16,10 +16,11 @@ const ConfirmationModal = ({title, body, showModal, setShowModal}: Modal) => {
             "linear-gradient(150deg, rgba(255, 199, 44, 0.16) 0%, rgba(19, 7, 18, 1) 100%)",
         }}
       >
-        <div 
-        className='absolute top-5 right-10 cursor-pointer' 
-        onClick={() => setShowModal && setShowModal(!showModal)}>
-          <FontAwesomeIcon icon={faClose} className='text-primary text-xl' />
+        <div
+          className="absolute top-5 right-10 cursor-pointer"
+          onClick={() => setShowModal && setShowModal(!showModal)}
+        >
+          <FontAwesomeIcon icon={faClose} className="text-primary text-xl" />
         </div>
         <h2 className={`${orbitron.className} text-2xl`}>
           {title || "Congralutaions It&apos;s Yours!"}
@@ -31,11 +32,12 @@ const ConfirmationModal = ({title, body, showModal, setShowModal}: Modal) => {
             className="flex justify-center items-center gap-2 p-3 text-primary"
           >
             <p>View-On Explorer</p>
-            <Image 
-          src="/external-link.svg" alt="external-link"
-                height={20}
-                width={20}
-                />
+            <Image
+              src="/external-link.svg"
+              alt="external-link"
+              height={20}
+              width={20}
+            />
           </Link>
         </div>
 
