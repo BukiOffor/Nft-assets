@@ -5,14 +5,14 @@ import Button from "@/common/Button";
 import Image from "next/image";
 import APIService from "@/http/api_service";
 import { useSelector } from "react-redux";
-import { 
-  getProject,  
-  getSales, 
-  getTeam, 
-  getArtworks, 
-  getSocial
+import {
+  getProject,
+  getSales,
+  getTeam,
+  getArtworks,
+  getSocial,
 } from "@/reducers/userSlice";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 
 interface GetStartedProps {
@@ -49,18 +49,18 @@ const ConfirmSubmit: React.FC<GetStartedProps> = ({ cancel, nextPage }) => {
       ...artworks,
       ...socials,
     };
-    APIService.createLaunchPackage(requestBody, (response: any, error: any) => { 
-      if(error){
+    APIService.createLaunchPackage(requestBody, (response: any, error: any) => {
+      if (error) {
         setLoading(false);
         toast.error(error, { theme: "colored" });
-          setSubcom(!subcom);
-      }
-        toast.success(response["message"], {theme: "colored"});
         setSubcom(!subcom);
-        setLoading(false);
-    })
-  }
-  
+      }
+      toast.success(response["message"], { theme: "colored" });
+      setSubcom(!subcom);
+      setLoading(false);
+    });
+  };
+
   return (
     <>
       {subcom && (
@@ -98,10 +98,10 @@ const ConfirmSubmit: React.FC<GetStartedProps> = ({ cancel, nextPage }) => {
                 className="bg-gradient-linear px-6 mb-5 py-3"
               >
                 <div className="flex justify-between space-x-2">
-                {loading && 
-                <ClipLoader 
-                color="#fff" loading={loading} size={25}/>}
-                <p>Submit</p>
+                  {loading && (
+                    <ClipLoader color="#fff" loading={loading} size={25} />
+                  )}
+                  <p>Submit</p>
                 </div>
               </Button>
             </div>

@@ -4,7 +4,7 @@ import { error } from "console";
 
 export const readFactoryContract = async (
   functionName: string,
-  args: [] = []
+  args: [] = [],
 ) => {
   const data = await readContractData({
     address: Factory.address,
@@ -20,7 +20,7 @@ export const readFactoryContract = async (
 export const readSimpleCollectibleContract = async (
   address: `0x${string}`,
   functionName: string,
-  args: any[] = []
+  args: any[] = [],
 ) => {
   try {
     console.log(address, functionName, args, "kkk");

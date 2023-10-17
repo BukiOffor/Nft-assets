@@ -29,7 +29,7 @@ const Details = () => {
   const [owners, setOwners] = useState<any[]>([]);
   const [image, setImage] = useState("");
   const [cAddress, setAddress] = useState<`0x${string}`>(
-    "0x950384443e2455E93010BeeC53Fd24e3aaD04C67"
+    "0x950384443e2455E93010BeeC53Fd24e3aaD04C67",
   );
   const [name, setName] = useState("");
   const [isRedeemed, setIsRedeemed] = useState(false);
@@ -65,7 +65,7 @@ const Details = () => {
                   });
                 });
             });
-          }
+          },
         );
       });
     });

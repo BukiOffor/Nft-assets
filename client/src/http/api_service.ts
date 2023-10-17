@@ -25,4 +25,15 @@ export default class APIService {
         cb(null, HttpErrorHandler.getErrorResponseData(error));
       });
   }
+
+  static async createLaunchPackage(requestBody: object, cb: any) {
+    axios
+      .post(Endpoints.LAUNCHPAD_CREATE_PACKAGE, requestBody)
+      .then((response) => {
+        cb(HttpSuccessDataHandler.getSuccessResponseData(response), null);
+      })
+      .catch((error) => {
+        cb(null, HttpErrorHandler.getErrorResponseData(error));
+      });
+  }
 }

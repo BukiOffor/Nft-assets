@@ -1,13 +1,15 @@
 "use client";
 import TopNavigation from "@/common/navs/top/TopNavigation";
-import React, { useState, useEffect } from "react";
-import TrendingCollection from "@/components/marketplace/TrendingCollections";
-import SearchCollection from "@/components/marketplace/SearchCollection";
 import Footer from "@/components/Footer";
 import NSMECollection from "@/components/marketplace/NSMECollection";
+import SearchCollection from "@/components/marketplace/SearchCollection";
 import TopSellers from "@/components/marketplace/TopSellers";
+import TrendingCollection from "@/components/marketplace/TrendingCollections";
+import APIService from "@/http/api_service";
 import { readFactoryContract, readSimpleCollectibleContract } from "@/utils";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import ProjectCollection from "@/components/marketplace/ProjectCollection";
 
 const MarketPlace: React.FC = () => {
   const [collections, setCollections] = useState<any[]>([]);
@@ -63,6 +65,7 @@ const MarketPlace: React.FC = () => {
       <TopNavigation />
       <div className="mx-auto w-[97%] tablet_l:w-[94%] laptop_l:w-[89%] max-w-[1280px]">
         <SearchCollection />
+        {/* <MarketPlacePreview /> */}
         <TrendingCollection
           collections={collections}
           owners={owners}
@@ -75,6 +78,7 @@ const MarketPlace: React.FC = () => {
           names={names}
           images={images}
         />
+        <ProjectCollection />
         <TopSellers />
       </div>
       <Footer />

@@ -1,6 +1,6 @@
 "use client";
 import { poppins } from "@/fonts/fonts";
-import { profileRoutes } from "@/routes";
+import { profileRoutes } from "@/routes/routes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiOutlineMenu } from "react-icons/ai";

@@ -9,44 +9,40 @@
 
 // Import necessary modules and components
 "use client";
-import React, { useState, useEffect } from "react";
 import Button from "@/common/Button";
-import {
-  SectionOneForm,
-  SecondSectionForm,
-} from "@/components/Forms/ProjectDetails";
-import Onborading from "@/components/Forms/Onborading";
+import ArtworkDetailsForm from "@/components/Forms/ArtworkDetails";
 import GetStarted from "@/components/Forms/GetStarted";
+import Onborading from "@/components/Forms/Onborading";
+import {
+  SecondSectionForm,
+  SectionOneForm,
+} from "@/components/Forms/ProjectDetails";
 import TeamInformationForm from "@/components/Forms/TeamInformation";
+import React, { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import {
-  usePrepareContractWrite,
   useContractWrite,
+  usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import ArtworkDetailsForm from "@/components/Forms/ArtworkDetails";
-import Minting from "@/components/Forms/Minting";
 
 import ConfirmSubmit from "@/components/Forms/ConfirmSubmit";
-import Succes from "@/components/Forms/Succes";
-import SalesPlanForm from "@/components/Forms/Minting";
 
 import Social from "@/components/Forms/Social";
-import { toast } from "react-toastify";
 import Endpoints from "@/http/endpoints";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { ClipLoader } from "react-spinners";
 import {
+  getArtworks,
   getProject,
   getSales,
-  getArtworks,
-  getTeam,
   getSocial,
+  getTeam,
 } from "@/reducers/userSlice";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import { Factory } from "../../../../constants";
+import { toast } from "react-toastify";
 import { parseEther } from "viem";
+import { Factory } from "../../../../constants";
 
 const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
