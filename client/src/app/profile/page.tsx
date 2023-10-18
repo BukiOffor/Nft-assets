@@ -1,15 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { orbitron, poppins } from "@/fonts/fonts";
-import Image from "next/image";
-import React from "react";
-import TopNavigation from "@/common/navs/top/TopNavigation";
 import profile from "@/assets/images/profile.png";
-import Card from "@/common/card";
-import SideBar from "@/common/navs/side/SideNavigation";
-import { AiOutlineMenu } from "react-icons/ai";
+import Card from "@/common/Card";
 import ProfileSideBar from "@/common/navs/side/ProfileSidebar";
+import TopNavigation from "@/common/navs/top/TopNavigation";
+import { poppins } from "@/fonts/fonts";
+import Image from "next/image";
+import React, { useState } from "react";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Profile: React.FC = () => {
   const [Open, setOpen] = useState(true);
