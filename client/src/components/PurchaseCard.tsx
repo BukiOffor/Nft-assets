@@ -14,10 +14,11 @@ const PurchaseCard = ({title, price}: Props) => {
 
     return ( 
         <div 
+        className="px-6 py-10 w-[38%]"
         style={{ 
-            background: "linear-gradient(134deg, rgba(255, 199, 44, 0.16) 4.92%, rgba(255, 199, 44, 0.00) 50%))", 
+            background: "linear-gradient(134deg, rgba(255, 199, 44, 0.16) 4.92%, rgba(255, 199, 44, 0.00) 50%)",
             borderRadius: "10px", 
-            padding: "15px 5px"
+            boxShadow: "-4px 12px 4px 0px rgba(0, 0, 0, 0.25)"
         }}>
 
             <div className={`${orbitron.className}`}>
@@ -38,12 +39,12 @@ const PurchaseCard = ({title, price}: Props) => {
             </div>
 </div>
             <Button 
-            className="bg-gradient-linear rounded-md px-24 py-2 text-[24px] w-full mb-2"
+            className="bg-gradient-linear rounded-md px-24 py-2 text-[24px] w-full mb-2 px-2"
             handleClick={mintProject}>
                 Mint
             </Button>
 
-            <p className="text-sm text-justify">
+            <p className="text-[12px] text-justify mt-2 px-2">
             By clicking “Mint” you agree to the Nft Factory. Terms of Service. Each transaction will incur non-refundable gas fees.
             </p>
         </div>
