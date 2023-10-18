@@ -13,6 +13,8 @@ module.exports = {
         sidebar: "#130712",
         primaryBg: "#0A0409",
         header: "#1B0A1A",
+        grey: "#BDBDBD",
+        lightGrey: "#DCDCDC"
       },
       screens: {
         mobile: "360px",
