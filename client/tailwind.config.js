@@ -14,7 +14,7 @@ module.exports = {
         primaryBg: "#0A0409",
         header: "#1B0A1A",
         grey: "#BDBDBD",
-        lightGrey: "#DCDCDC"
+        lightGrey: "#DCDCDC",
       },
       screens: {
         mobile: "360px",
